@@ -1,7 +1,10 @@
+let socket = io()
 
-
-$('form').on('submit', function() {
+$('form').on('submit', () => {
     let text = $('#message').val()
-    alert(text)
+    socket.emit('message', text)
+    $('#message').val('')
     return false
 })
+
+socket.on('message', () => $('<li>').text(msg).appendTo('#history'))
